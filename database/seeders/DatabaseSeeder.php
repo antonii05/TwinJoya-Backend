@@ -24,7 +24,6 @@ class DatabaseSeeder extends Seeder
         Cliente::factory()->times(50)->create();
         Proveedor::factory()->times(10)->create();
         $this->call(SeccionSeeder::class);
-        $this->call(FamiliasSeeder::class);
         $this->call(ArticuloSeeder::class);
         $this->call(ReparacionSeeder::class);
         $this->call(FacturasProveedoresSeeder::class);
