@@ -29,7 +29,7 @@ Route::get('/usuario', function () {
 
 // Rutas para el controlador de Clientes
 Route::prefix('v1/clientes')->group(function () {
-    Route::resource('recursos', 'ClientesController');
+    Route::resource('recursos', ClientesController::class);
     Route::get('/getClientes', [ClientesController::class, 'getAllClientes']);
     Route::delete('/eliminar/{id}', [ClientesController::class, 'eliminar']);
     Route::put('/actualizar', [ClientesController::class, 'actualizar']);
@@ -55,10 +55,6 @@ Route::prefix('v1/proveedores')->group(function () {
     Route::put('/actualizar', [ProveedorController::class, 'actualizar']);
 });
 
-Route::prefix('/v1/familias')->group(function () {
-    Route::get('/getFamilias', [FamiliaController::class, 'getFamilias']);
-    Route::get('/getFamilia/{id}', [FamiliaController::class, 'getFamilia']);
-});
 
 Route::prefix('/v1/secciones')->group(function () {
     Route::get('/getSecciones', [SeccionController::class, 'getSecciones']);
@@ -88,11 +84,11 @@ Route::prefix('/v1/reparaciones')->group(function () {
     Route::delete('/eliminar/{idArticulo}', [ReparacionesController::class, 'eliminar']);
 });
 
-Route::prefix('/v1/facturasProveedor')->group(function(){
-    Route::get('/getAll',[FacturasProveedorController::class,'getFacturasProveedor']);
-    Route::get('/get/{idFactura}',[FacturasProveedorController::class,'getFactura']);
-    Route::get('/buscar',[FacturasProveedorController::class,'buscar']);
-    Route::post('/crear',[FacturasProveedorController::class,'crear']);
-    Route::put('/update',[FacturasProveedorController::class,'update']);
-    Route::delete('/delete/{numero_factura}',[FacturasProveedorController::class,'eliminar']);
+Route::prefix('/v1/facturasProveedor')->group(function () {
+    Route::get('/getAll', [FacturasProveedorController::class, 'getFacturasProveedor']);
+    Route::get('/get/{idFactura}', [FacturasProveedorController::class, 'getFactura']);
+    Route::get('/buscar', [FacturasProveedorController::class, 'buscar']);
+    Route::post('/crear', [FacturasProveedorController::class, 'crear']);
+    Route::put('/update', [FacturasProveedorController::class, 'update']);
+    Route::delete('/delete/{numero_factura}', [FacturasProveedorController::class, 'eliminar']);
 });
