@@ -36,12 +36,14 @@ class ArticulosController extends Controller
     {
         $datos = $request->all();
 
-        //Se aniade por fuerza el usuario registrado
-        $datos['id_usuario'] = 1;
-
         DB::beginTransaction();
         try {
-            Articulo::create($datos);
+            $articulo = new Articulo($datos);
+            $articulo->id_familia = $datos['familia']['id'];
+            $articulo->id_proveedor = $datos['proveedor']['id'];
+            $articulo->id_empresa = $datos['empresa']['id'];
+            $articulo->id_usuario = 1;
+            $articulo->save();
             DB::commit();
             return response()->json('Articulo Registrado Con Exito', 200);
         } catch (\Exception $error) {
